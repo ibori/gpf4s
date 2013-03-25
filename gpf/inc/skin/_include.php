@@ -30,7 +30,7 @@ set_include_path($gpf_inc_path . PATH_SEPARATOR . $gpf_current_incs);
 
 // 스킨 파일에서 path 사용시 생길 수 있는 오류 수정을 위해 출력버퍼를 가져와 보정함
 ob_start();
-include GPF_SKIN_PATH."/".$gpf_include;
+@include GPF_SKIN_PATH."/".$gpf_include;
 $out = ob_get_contents();
 ob_end_clean();
 if($out) echo str_replace(GPF_INC_SKIN_PATH, GPF_SKIN_PATH, $out);
