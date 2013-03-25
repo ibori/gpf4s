@@ -29,7 +29,7 @@ include_once("gpf.head.php");
 	<h3>GPF 링크</h3>
 	<ul class="gpf_ul">
 		<li><a href="http://byfun.com" target="_blank">개발자 홈페이지</a> <span class='gd_desc'>- 응원의 메시지를 남겨주세요 ^^</span></li>
-		<li><a href="https://github.com/byfun/gpf" target="_blank">GPF on GitHub</a> <span class='gd_desc'>- GPF 최신 버전을 다운로드 하실 수 있습니다.</span></li>
+		<li><a href="https://github.com/byfun/gpf4s" target="_blank">GPF on GitHub</a> <span class='gd_desc'>- GPF 최신 버전을 다운로드 하실 수 있습니다.</span></li>
 		<li><a href="http://lovelyus.net/" target="_blank">GPF 관련 자료실</a> <span class='gd_desc'>- GPF 플러그인, 트윅, 스킨 등을 구하실 수 있습니다.</span></li>
 	</ul>
 
