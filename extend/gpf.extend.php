@@ -33,7 +33,7 @@ if(getcwd() == realpath(G4_BBS_PATH))
 	$board_skin_url = GPF_URL."/inc/skin";
 
 	define("GPF_MEMBER_SKIN_PATH", $member_skin_path);	// 회원 스킨 인터셉트를 위해
-	define("GPF_MEMBER_SKIN_URL", $member_skin_path);	// 회원 스킨 인터셉트를 위해
+	define("GPF_MEMBER_SKIN_URL", $member_skin_url);	// 회원 스킨 인터셉트를 위해
 	$member_skin_path  = GPF_PATH.'/inc/member_skin';
 	$member_skin_url   = GPF_URL .'/inc/member_skin';
 

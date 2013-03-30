@@ -31,7 +31,7 @@ if(!$activated) alert('플러그인을 활성화 후 설정할 수 있습니다.
 
 include_once("./gpf.head.php");
 ?>
-<h2>GPF : <?=$info->label?> 설정</h2>
+
 <?
 $info->setup();
 
