@@ -19,6 +19,7 @@ define("GPF_ADMIN_URL", G4_ADMIN_URL."/gpf");
 define("GPF_INTERCEPT_SKIN", ".gpf");
 
 define("GPF_SKIN_PATH", $board_skin_path); // 게시판 스킨 인터셉트를 위해
+
 define("GPF_INC_SKIN_PATH", G4_PATH."/gpf/inc/skin");
 
 define("GPF_PRE_EVENT_PREFIX", "PRE_");
@@ -28,25 +29,33 @@ define("GPF_POST_EVENT_PREFIX", "POST_");
 
 if(getcwd() == realpath(G4_BBS_PATH))
 {
-	$board_skin_path = GPF_INC_SKIN_PATH;
+	$board_skin_path = GPF_PATH."/inc/skin";
+	$board_skin_url = GPF_URL."/inc/skin";
+
+	define("GPF_MEMBER_SKIN_PATH", $member_skin_path);	// 회원 스킨 인터셉트를 위해
+	define("GPF_MEMBER_SKIN_URL", $member_skin_path);	// 회원 스킨 인터셉트를 위해
+	$member_skin_path  = GPF_PATH.'/inc/member_skin';
+	$member_skin_url   = GPF_URL .'/inc/member_skin';
+
+	define("GPF_SEARCH_SKIN_PATH", $search_skin_path);	// 검색 스킨 인터셉트를 위해
+	define("GPF_SEARCH_SKIN_URL", $search_skin_url);	// 검색 스킨 인터셉트를 위해
+	$search_skin_path  = GPF_PATH.'/inc/search_skin';
+	$search_skin_url    = GPF_URL .'/inc/search_skin';
+
 }
 
-if(!file_exists(getcwd() . "/admin.lib.php")) {	// except if current path is 'adm' folder in g4
-
-	if($config['cf_member_skin'] != GPF_INTERCEPT_SKIN) 
-	{
-		define("GPF_MEMBER_SKIN", $config['cf_member_skin']);	// 회원 스킨 인터셉트를 위해
-		$config['cf_member_skin'] = GPF_INTERCEPT_SKIN;
-	}
-
-
-	if($config['cf_search_skin'] != GPF_INTERCEPT_SKIN) 
-	{
-		define("GPF_SEARCH_SKIN", $config['cf_search_skin']);	// 검색 스킨 인터셉트를 위해
-		$config['cf_search_skin'] = GPF_INTERCEPT_SKIN;
-	}
-}
 
 include_once G4_PATH . "/gpf/gpf.php";
 
+function gpf_dbg($msg, $title = '')
+{
+	if(is_array($msg)) {
+		ob_start();
+		print_r($msg);
+		$msg = ob_get_contents($msg);
+		ob_end_clean();
+	}
+	if($title) $msg = " [ " . $title." ] ==================\n".$msg;
+	echo "<textarea style='width:100%;height:200px;'>".htmlspecialchars($msg)."</textarea>";
+}
 ?>

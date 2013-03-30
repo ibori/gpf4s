@@ -8,7 +8,7 @@
 
 if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가 
 
-$gpf_include = "calendar.skin.php";
+$gpf_include = basename(__FILE__);
 include "_include.php";
 
 ?>

@@ -120,6 +120,9 @@ $(document).ready(function() {
 					$al.text('활성화');
 				}
 				$al.attr('data-active', json.use);
+				if(json.has_admin == 1) {
+					location.reload();	// 관리 플러그인 있을 경우, 메뉴 갱신을 위해 리로드
+				}
 			}
 			else alert('Fail to update');
 			}

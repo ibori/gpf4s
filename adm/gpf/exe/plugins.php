@@ -11,7 +11,8 @@ include_once("_common.php");
 if($md == "update_use" && $p ) {
 
 	$use_plugins = $gpf->getActivatedPlugins();
-	
+
+	$has_admin = 0;
 	$exists = false;
 	foreach($use_plugins as $idx=>$pid)
 	{
@@ -21,9 +22,11 @@ if($md == "update_use" && $p ) {
 			{
 				unset($use_plugins[$idx]);
 				$obj = $gpf->readPlugin($p);
-				$obj->loadPluginInfo();
+				$pi = $obj->loadPluginInfo();
 				if($obj) {
 					$obj->info->onDeactivated();	
+					$fs = $obj->info->getAuths();
+					if($fs->getAdmins()) $has_admin = 1;
 				}
 			}
 			$exists = true;
@@ -36,6 +39,8 @@ if($md == "update_use" && $p ) {
 		$obj = $gpf->readPlugin($p);
 		$obj->loadPluginInfo();
 		$obj->info->onActivated();	
+		$fs = $obj->info->getAuths();
+		if($fs->getAdmins()) $has_admin = 1;
 	}
 
 	$use_plugins = array_values($use_plugins);
@@ -53,7 +58,7 @@ if($md == "update_use" && $p ) {
 	$gpfjc->updateCss();
 	$gpfjc->updateJs();
 
-	die ( json_encode(array('code'=>1, 'use'=>$use, 'plugin_id'=>$p)) );
+	die ( json_encode(array('code'=>1, 'use'=>$use, 'plugin_id'=>$p, 'has_admin'=>$has_admin)) );
 }
 
 

@@ -157,6 +157,18 @@ class GPFPluginInfo
 	 */	
 	public function getFunctions() 
 	{ 
+		$auths = $this->getAuths();
+		if($auths) return $auths->getAuths();
+		
+		return null;
+	}
+
+	/**
+	 *
+	 * 등록된 event, px, admin 정보 반환
+	 */	
+	public function getAuths() 
+	{ 
 		$gpf = GPF::getInstance();
 
 		// 반환 형식 예제
@@ -166,7 +178,7 @@ class GPFPluginInfo
 		$dummy = new GPFDummy();
 		$p->regist($dummy);
 		
-		return $dummy->getAuths();
+		return $dummy;
 	}
 
 	/**
@@ -283,25 +295,33 @@ class GPFPluginInfo
 class GPFDummy
 {
 	var $auths = array();
+	var $actions = array();
+	var $admins = array();
+	var $helpers = array();
+	var $pxs = array();
 
 	public function __construct() {				
 	}
 	public function addAction($event, $obj, $handler)
 	{
-		array_push($this->auths, $event);
+		array_push($this->actions, $event);
 	}
 	public function addAdmin($label, $obj, $handler)
 	{
-		array_push($this->auths, $label);
+		array_push($this->admins, $label);
 	}
 	public function addHelper($name, $obj, $help_function)
 	{
-		array_push($this->auths, $name);
+		array_push($this->helpers, $name);
 	}
 	public function addPx($event, $obj, $handler)
 	{
-		array_push($this->auths, "PX_".strtoupper($event));
+		array_push($this->pxs, "PX_".strtoupper($event));
 	}
-	public function getAuths() { return $this->auths; }
+	public function getAuths() { return array_merge($this->actions, $this->admins, $this->helpers, $this->pxs); }
+	public function getActions() { return $this->actions; }
+	public function getAdmins() { return $this->admins; }
+	public function getHelpers() { return $this->helpers; }
+	public function getPXs() { return $this->pxs; }
 }
 ?>
