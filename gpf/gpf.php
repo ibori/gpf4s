@@ -8,10 +8,15 @@
 
 if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가 
 
-include_once GPF_PATH."/lib/gpf.GPF.class.php";
-
-// Gnuboard Plugin Framework Helper
-$gpf = GPF::getInstance();
+// Gnuboard Plugin Framework
+if(!defined("NO_GPF")) 
+{
+	include_once GPF_PATH."/lib/gpf.GPF.class.php";
+	$gpf = GPF::getInstance();
+} else {
+	include_once GPF_PATH."/lib/gpf.GPFDummy.class.php";
+	$gpf = GPF::getInstance();
+}
 
 
 
