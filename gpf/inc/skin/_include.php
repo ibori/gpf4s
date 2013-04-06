@@ -35,7 +35,9 @@ ob_start();
 $out = ob_get_contents();
 ob_end_clean();
 
-if($out) echo str_replace(GPF_INC_SKIN_PATH, GPF_SKIN_PATH, $out);
+if($out) {
+	echo str_replace(GPF_INC_SKIN_URL, GPF_SKIN_URL, str_replace(GPF_INC_SKIN_PATH, GPF_SKIN_PATH, $out));
+}
 
 set_include_path($gpf_current_incs);
 unset($gpf_current_incs);
